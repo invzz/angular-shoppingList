@@ -1,0 +1,6 @@
+.row{
+    border-left-style:solid;
+    border-right-style: solid;
+    border-color: black;
+    border-radius: 10px;
+}
