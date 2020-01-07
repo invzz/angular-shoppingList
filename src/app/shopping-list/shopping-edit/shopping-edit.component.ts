@@ -11,20 +11,21 @@ import { Ingredient } from 'src/app/shared/ingredient.model';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css']
 })
-export class ShoppingEditComponent implements OnInit,OnDestroy {
-  @ViewChild('f',{static: false}) slForm: NgForm;
+export class ShoppingEditComponent implements OnInit, OnDestroy {
+  @ViewChild('f', {static: false}) slForm: NgForm;
   subscription: Subscription;
   editMode = false;
   editItemIndex: number;
   editedItem: Ingredient;
-  constructor(private shopList:ShoppingListService) { }
+  constructor(private shopList: ShoppingListService) { }
 
-  onSubmit(form: NgForm  ){
+  onSubmit(form: NgForm  ) {
+    let ingredient: Ingredient;
     const value = form.value;
-    const ingredient = new Ingredient(value.name,value.amount,value.um)
-    if (this.editMode){
+    ingredient = new Ingredient(value.name, value.amount, value.um);
+    if (this.editMode) {
       this.shopList.updateIngredient(this.editItemIndex, ingredient);
-      this.editMode=false;
+      this.editMode = false;
     } else {
       this.shopList.add(ingredient);
     }
@@ -34,28 +35,28 @@ export class ShoppingEditComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.subscription = this.shopList.startedEditing.subscribe(
     (index: number) => {
-      this.editItemIndex = index; 
-        this.editMode=true;
-        this.editedItem=this.shopList.getIngredient(index);
-        this.slForm.setValue({
+      this.editItemIndex = index;
+      this.editMode = true;
+      this.editedItem = this.shopList.getIngredient(index);
+      this.slForm.setValue({
           name: this.editedItem.name,
           um: this.editedItem.um,
           amount: this.editedItem.amount
-        })
+        });
       }
     );
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  clearForm(){
-    this.editMode=false;
+  clearForm() {
+    this.editMode = false;
     this.slForm.reset();
   }
-  
-  onDelete(){
+
+  onDelete() {
     this.shopList.deleteIngredient(this.editItemIndex);
     this.clearForm();
   }
