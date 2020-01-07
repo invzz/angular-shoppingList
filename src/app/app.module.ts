@@ -17,6 +17,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingRecipeComponent } from './recipe/landing-recipe/landing-recipe.component';
 import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
+import { RecipeService } from './recipe/recipe.service';
 
 @NgModule({
   declarations: [
@@ -41,8 +42,8 @@ import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component'
     HttpClientModule,
 
   ],
-
-  providers: [ShoppingListService],
+ 
+  providers: [ShoppingListService,RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class RecipeService{
-
+    changesOccured = new Subject<Recipe[]>();
     selectedRecipe = new Subject<Recipe>();
 
     private recipes: Recipe[] = [
@@ -40,13 +40,17 @@ export class RecipeService{
     }
 
     add(recipe: Recipe){
-         this.recipes.push(recipe)
+         this.recipes.push(recipe);
+         this.changesOccured.next(this.recipes.slice());
     }
-    edit(index: number, recipe:Recipe){
-        //TODO
+    edit(index: number, newRecipe:Recipe){
+        this.recipes[index] = newRecipe;
+        this.changesOccured.next(this.recipes.slice());
      }
+
     delete(index: number){ 
-        //TODO
+        this.recipes.splice(index,1);
+        this.changesOccured.next(this.recipes.slice());
     }
 
 }

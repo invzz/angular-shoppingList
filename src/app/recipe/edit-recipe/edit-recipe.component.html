@@ -4,9 +4,11 @@
             <div class="row">
                 <div class="col-xs-12">
                     <button type="submit" 
-                    class="btn btn-success">Salva</button>
+                    class="btn btn-success"
+                    [disabled]="!recipeForm.valid">Salva</button>
                     <button type="button" 
-                    class="btn btn-danger">Elimina</button>
+                    class="btn btn-danger"
+                    (click)="onCancel()">Annulla</button>
                 </div>
             </div>
             <div class="row">
@@ -29,15 +31,15 @@
                         formControlName="imagePath" 
                         type="text" 
                         id="imagePath" 
-                        class="form-control"> 
+                        class="form-control"
+                        #imagePath> 
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
                     <img 
-                    [src]="recipeForm.value.imagePath" 
-                    alt="Anteprima..." 
+                    [src]="imagePath.value" 
                     class="img-responsive">
                 </div>
             </div>
@@ -80,10 +82,20 @@
                         </div>
                         <div class="col-xs-2">
                             <button 
-                            class="btn-danger form-control">X
+                            class="btn-danger form-control"
+                            type="button"
+                            (click)=onDeleteIngredient(i)>X
                             </button>
                         </div>
-                    </div>     
+                    </div> 
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type= "button" 
+                            class="btn btn-success" 
+                            (click)="onAddIngredient()">Aggiungi ingrediente</button>
+                        </div>
+                    </div>
                 </div>
              </div>
         </form>
