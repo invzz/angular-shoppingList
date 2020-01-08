@@ -57,4 +57,8 @@ export class RecipeService {
         this.changesOccured.next(this.recipes.slice());
     }
 
+  set(recipes: Recipe[]) {
+      this.recipes = recipes;
+      this.changesOccured.next(this.recipes.slice());
+  }
 }

@@ -13,11 +13,11 @@
                     <li class="dropdown" appDropdown>
                         <a  class="dropdown-toggle" role="button">Menu<span class="caret" ></span></a>
                         <ul class="dropdown-menu">
-                            <li style="cursor: pointer;"><a>Salva</a></li>
-                            <li style="cursor: pointer;"><a>Apri</a></li>
+                            <li style="cursor: pointer;" (click)="onSaveData()"><a>Salva</a></li>
+                            <li style="cursor: pointer;" (click)="onFetchData()"><a>Apri</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav> 
+    </nav>
