@@ -8,13 +8,17 @@ import { RecipeItemComponent } from './recipe/recipe-list/recipe-item/recipe-ite
 import { LandingRecipeComponent } from './recipe/landing-recipe/landing-recipe.component';
 import { EditRecipeComponent } from './recipe/edit-recipe/edit-recipe.component';
 import {RecipesResolverService} from './recipe/recipes-resolver.service';
+import {AuthComponent} from './auth/auth/auth.component';
 
 const appRoutes: Routes = [
     // root
     {path: '', redirectTo: 'recipes', pathMatch: 'full'},
 
     // Recipes
-    {path: 'recipes', component: RecipeComponent, children: [
+    {
+      path: 'recipes',
+      component: RecipeComponent,
+      children: [
         {path: '', component: LandingRecipeComponent, pathMatch: 'full'},
         {path: 'new', component: EditRecipeComponent},
         {path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService]},
@@ -28,14 +32,14 @@ const appRoutes: Routes = [
     // Sopping list
     {path: 'shop', component: ShoppingListComponent, children: [
         {path: 'edit', component: ShoppingListComponent}
-    ]}
+    ]},
+  { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
     exports: [RouterModule],
 })
-
 export class AppRoutingModule {
 
 }

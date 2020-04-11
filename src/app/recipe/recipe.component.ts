@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 
 })
 export class RecipeComponent implements OnInit {
+  OFFSET = 2;
+  chunks = [];
   constructor() { }
-  ngOnInit() { }
+  ngOnInit() {
+    this.chunks = Array.from(Array(this.OFFSET), (x) => 0);
+    console.log(this.chunks);
+  }
 }
